@@ -5,6 +5,7 @@ export interface StoreCategory {
   name: string
   productCount?: number
   parentId?: number
+  imageUrl?: string
 }
 
 export type ApiGetCategoriesResponse = ApiResponse<StoreCategory[]>

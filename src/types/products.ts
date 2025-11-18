@@ -11,8 +11,8 @@ export interface StoreProduct {
   price: number
   defaultDisplayedPriceFormatted: string
 
-  defaultCategoryId: number
-  categoryIds: number[]
+  // defaultCategoryId: number
+  // categoryIds: number[]
 }
 
 export type ApiGetProductsResponse = ApiResponse<StoreProduct[]>
