@@ -15,8 +15,7 @@ coverage
 *.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+.vscode
 .idea
 *.suo
 *.ntvs*
@@ -34,5 +33,8 @@ coverage
 
 # Vitest
 __screenshots__/
+
+# AI
+.claude
 
 TODO.md
