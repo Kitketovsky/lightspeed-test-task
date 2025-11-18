@@ -5,8 +5,7 @@ export default (http: typeof HttpType) => ({
   async getCategories() {
     return await http<ApiGetCategoriesResponse>('/categories', {
       query: {
-        responseFields:
-          'items(id,name,productCount,parentId,imageUrl,originalImageUrl,hdThumbnailUrl)',
+        responseFields: 'items(id,name,productCount,parentId,imageUrl)',
         withSubcategories: true,
       },
     })

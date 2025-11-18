@@ -12,7 +12,7 @@ onMounted(() => {
 <template>
   <RouterLink
     to="/cart"
-    class="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+    class="relative rounded-lg p-2 transition-colors hover:bg-gray-100"
     aria-label="Shopping cart"
   >
     <svg
@@ -31,7 +31,7 @@ onMounted(() => {
     </svg>
     <span
       v-if="cartStore.totalItems > 0"
-      class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"
+      class="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white"
     >
       {{ cartStore.totalItems }}
     </span>

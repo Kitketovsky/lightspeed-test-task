@@ -10,7 +10,8 @@ export default (http: typeof HttpType) => ({
   }: { categoryId?: string | number | null } = {}) {
     const query = {
       responseFields:
-        'items(id,name,description,imageUrl,thumbnailUrl,price,defaultDisplayedPriceFormatted,defaultCategoryId,categoryIds)',
+        // defaultCategoryId,categoryIds
+        'items(id,name,description,imageUrl,thumbnailUrl,price,defaultDisplayedPriceFormatted)',
       includeProductsFromSubcategories: true,
       ...(categoryId && { category: categoryId }),
     }
