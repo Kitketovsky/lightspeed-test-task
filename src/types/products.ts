@@ -1,18 +1,15 @@
 import type { ApiResponse } from './api'
 
 export interface StoreProduct {
-  id: number
-  name: string
-  description: string
+	id: number
+	name: string
+	description: string
 
-  imageUrl: string
-  thumbnailUrl: string
+	imageUrl: string
+	thumbnailUrl: string
 
-  price: number
-  defaultDisplayedPriceFormatted: string
-
-  // defaultCategoryId: number
-  // categoryIds: number[]
+	price: number
+	defaultDisplayedPriceFormatted: string
 }
 
 export type ApiGetProductsResponse = ApiResponse<StoreProduct[]>
