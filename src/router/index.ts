@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, type RouterOptions } from 'vue-router'
 
 import HomePage from '../pages/HomePage/HomePage.vue'
 import ProductPage from '../pages/ProductPage.vue'
-import CartPage from '../pages/CartPage.vue'
+import CartPage from '../pages/CartPage/CartPage.vue'
 import NotFoundPage from '../pages/NotFoundPage.vue'
 
 const routes: RouterOptions['routes'] = [

@@ -11,6 +11,7 @@ const CART_STORAGE_KEY = 'ecwid-cart'
 
 export const useCartStore = defineStore('cart', () => {
   const items = ref<CartItem[]>([])
+  const orderPlaced = ref(false)
 
   const totalItems = computed(() =>
     items.value.reduce((total, item) => total + item.quantity, 0),
@@ -89,6 +90,7 @@ export const useCartStore = defineStore('cart', () => {
     totalItems,
     totalPrice,
     isCartEmpty,
+    orderPlaced,
     loadFromLocalStorage,
     addItem,
     updateQuantity,
