@@ -1,24 +1,29 @@
 <script lang="ts" setup>
 import StoreSection from '../../../components/StoreSection.vue'
 import ProductCard from './ProductCard.vue'
-import { useProductsStore } from '../../../stores/products'
+import UISkeleton from '../../../components/ui/UISkeleton.vue'
+import { useProducts } from '../../../composables/useProducts'
 
-const store = useProductsStore()
+const { data, isLoading } = useProducts()
 </script>
 
 <template>
-  <StoreSection v-if="store.products?.length" heading="Products">
+  <StoreSection heading="Products">
     <div
+      v-if="isLoading"
       class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
     >
-      <ProductCard
-        v-for="product in store.products"
-        :key="product.id"
-        v-bind="product"
-      />
+      <UISkeleton v-for="i in 8" :key="i" class="h-96 w-full rounded-xl" />
     </div>
 
-    <div v-if="!store.products.length" class="py-12 text-center text-gray-500">
+    <div
+      v-if="data?.length"
+      class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+    >
+      <ProductCard v-for="product in data" :key="product.id" v-bind="product" />
+    </div>
+
+    <div v-if="!data?.length" class="py-12 text-center text-gray-500">
       <p class="text-xl">No items found in this category</p>
     </div>
   </StoreSection>
