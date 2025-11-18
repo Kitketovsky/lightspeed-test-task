@@ -1,6 +1,10 @@
-## Test task for TypeScript/Vue.js developer in Ecwid
+# Senior Front-end Software Engineer test task for Lightspeed
 
-## Goal
+## Vacancy
+
+[Senior Front-end Software Engineer (Vue.js)](https://www.lightspeedhq.com/careers/job/senior-frontend-software-engineer-vuejs/5914265/?office=Tbilisi,%20Tbilisi,%20Georgia)
+
+## Requirements
 
 Write an application that contains three pages:
 
@@ -82,7 +86,3 @@ When you click on the button, a text congratulating you on your purchase is show
 ## Design
 
 Pages should look nice and readable. You can use any CSS framework.
-
-## Code sharing platform
-
-You can upload the code to your GitHub/Bitbucket or use the Web IDE: https://codesandbox.io.
