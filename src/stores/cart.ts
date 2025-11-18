@@ -1,98 +1,98 @@
 import { defineStore } from 'pinia'
 import type { StoreProduct } from '../types/products'
+import { computed, ref, watch } from 'vue'
 
 export interface CartItem {
   product: StoreProduct
   quantity: number
 }
 
-interface CartStore {
-  items: CartItem[]
-}
-
 const CART_STORAGE_KEY = 'ecwid-cart'
 
-export const useCartStore = defineStore('cart', {
-  state: (): CartStore => ({
-    items: [],
-  }),
+export const useCartStore = defineStore('cart', () => {
+  const items = ref<CartItem[]>([])
 
-  getters: {
-    totalItems: (state) => {
-      return state.items.reduce((total, item) => total + item.quantity, 0)
-    },
-    totalPrice: (state) => {
-      return state.items.reduce(
-        (total, item) => total + item.product.price * item.quantity,
-        0,
-      )
-    },
-    isEmpty: (state) => state.items.length === 0,
-  },
+  const totalItems = computed(() =>
+    items.value.reduce((total, item) => total + item.quantity, 0),
+  )
 
-  actions: {
-    loadFromLocalStorage() {
-      try {
-        const stored = localStorage.getItem(CART_STORAGE_KEY)
-        if (stored) {
-          this.items = JSON.parse(stored)
-        }
-      } catch (error) {
-        console.error('Failed to load cart from localStorage:', error)
-        this.items = []
+  const totalPrice = computed(() =>
+    items.value.reduce(
+      (total, item) => total + item.product.price * item.quantity,
+      0,
+    ),
+  )
+
+  const isCartEmpty = computed(() => items.value.length === 0)
+
+  watch(
+    items,
+    () => {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items.value))
+    },
+    { deep: true },
+  )
+
+  function loadFromLocalStorage() {
+    try {
+      const stored = localStorage.getItem(CART_STORAGE_KEY)
+      if (stored) {
+        items.value = JSON.parse(stored)
       }
-    },
+    } catch (error) {
+      console.error('Failed to load cart from localStorage:', error)
+      items.value = []
+    }
+  }
 
-    saveToLocalStorage() {
-      try {
-        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(this.items))
-      } catch (error) {
-        console.error('Failed to save cart to localStorage:', error)
-      }
-    },
+  function addItem(product: StoreProduct) {
+    const existingItem = items.value.find(
+      (item) => item.product.id === product.id,
+    )
 
-    addItem(product: StoreProduct) {
-      const existingItem = this.items.find(
-        (item) => item.product.id === product.id,
-      )
+    if (existingItem) {
+      existingItem.quantity++
+    } else {
+      items.value.push({
+        product,
+        quantity: 1,
+      })
+    }
+  }
 
-      if (existingItem) {
-        existingItem.quantity++
+  function removeItem(productId: number) {
+    const index = items.value.findIndex((item) => item.product.id === productId)
+
+    if (index !== -1) {
+      items.value.splice(index, 1)
+    }
+  }
+
+  function updateQuantity(productId: number, quantity: number) {
+    const item = items.value.find((item) => item.product.id === productId)
+
+    if (item) {
+      if (quantity <= 0) {
+        removeItem(productId)
       } else {
-        this.items.push({
-          product,
-          quantity: 1,
-        })
+        item.quantity = quantity
       }
+    }
+  }
 
-      this.saveToLocalStorage()
-    },
+  function clearCart() {
+    items.value = []
+  }
 
-    removeItem(productId: number) {
-      const index = this.items.findIndex(
-        (item) => item.product.id === productId,
-      )
-      if (index !== -1) {
-        this.items.splice(index, 1)
-        this.saveToLocalStorage()
-      }
-    },
-
-    updateQuantity(productId: number, quantity: number) {
-      const item = this.items.find((item) => item.product.id === productId)
-      if (item) {
-        if (quantity <= 0) {
-          this.removeItem(productId)
-        } else {
-          item.quantity = quantity
-          this.saveToLocalStorage()
-        }
-      }
-    },
-
-    clearCart() {
-      this.items = []
-      this.saveToLocalStorage()
-    },
-  },
+  return {
+    items,
+    totalItems,
+    totalPrice,
+    isCartEmpty,
+    loadFromLocalStorage,
+    addItem,
+    updateQuantity,
+    clearCart,
+    removeItem,
+  }
 })
