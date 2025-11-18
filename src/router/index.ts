@@ -7,7 +7,8 @@ import NotFoundPage from '../pages/NotFoundPage.vue'
 
 const routes: RouterOptions['routes'] = [
   { path: '/', component: HomePage, name: 'home' },
-  { path: '/product/:id', component: ProductPage, name: 'product' },
+  { path: '/category/:categoryId', component: HomePage, name: 'category' },
+  { path: '/product/:productId', component: ProductPage, name: 'product' },
   { path: '/cart', component: CartPage, name: 'cart' },
   { path: '/:pathMatch(.*)*', component: NotFoundPage, name: 'not-found' },
 ]

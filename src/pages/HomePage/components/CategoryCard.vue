@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useRouter } from 'vue-router'
+import { RouterLink } from 'vue-router'
 import type { StoreCategory } from '../../../types/categories'
 
 defineProps<StoreCategory>()
@@ -7,37 +7,30 @@ defineProps<StoreCategory>()
 defineOptions({
   inheritAttrs: false,
 })
-
-const router = useRouter()
-
-const navigateToCategory = (categoryId: number) => {
-  router.push({ query: { category: categoryId } })
-}
 </script>
 
 <template>
-  <div
-    class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1"
-    @click="navigateToCategory(id)"
-  >
+  <RouterLink :to="{ name: 'category', params: { categoryId: id } }">
     <div
-      class="w-full h-48 bg-gray-100 flex items-center justify-center overflow-hidden"
+      class="relative flex h-48 w-full cursor-pointer flex-col items-center justify-center gap-2 overflow-hidden rounded-xl bg-linear-to-br from-indigo-500 to-purple-600 p-5 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
     >
-      <div
-        class="w-full h-full flex items-center justify-center bg-linear-to-br from-indigo-500 to-purple-600"
-      >
-        <span class="text-white text-5xl font-bold">{{ name[0] }}</span>
-      </div>
-    </div>
-    <div class="p-5">
+      <img
+        v-if="imageUrl"
+        class="absolute inset-0 h-full w-full object-cover"
+        :src="imageUrl"
+        :alt="`${name} category`"
+        loading="lazy"
+      />
+
       <h3
-        class="text-lg font-semibold mb-1 text-gray-800 hover:text-indigo-600 transition-colors"
+        class="z-10 text-2xl font-semibold text-white transition-colors"
+        :class="{
+          'hover:text-indigo-600': imageUrl,
+          'hover:text-black': !imageUrl,
+        }"
       >
         {{ name }}
       </h3>
-      <p v-if="productCount" class="text-sm text-gray-500">
-        {{ productCount }} products
-      </p>
     </div>
-  </div>
+  </RouterLink>
 </template>

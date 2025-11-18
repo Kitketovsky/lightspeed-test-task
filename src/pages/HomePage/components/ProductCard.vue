@@ -1,18 +1,12 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
 import { useCartStore } from '../../../stores/cart'
 import type { StoreProduct } from '../../../types/products'
 
 const props = defineProps<StoreProduct>()
 
-const router = useRouter()
 const cartStore = useCartStore()
 
 defineOptions({ inheritAttrs: false })
-
-const navigateToProduct = (productId: number) => {
-  router.push({ name: 'product', params: { id: productId } })
-}
 
 const addToCart = () => {
   cartStore.addItem(props)
@@ -21,45 +15,47 @@ const addToCart = () => {
 
 <template>
   <div
-    class="bg-white flex flex-col rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
+    class="flex flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-xl"
   >
-    <div
-      class="w-full h-48 bg-gray-100 flex items-center justify-center overflow-hidden cursor-pointer"
-      @click="navigateToProduct(id)"
+    <RouterLink
+      class="flex h-48 w-full cursor-pointer items-center justify-center overflow-hidden bg-gray-100"
+      :to="{ name: 'product', params: { productId: id } }"
     >
       <img
         v-if="thumbnailUrl"
         :src="thumbnailUrl"
         :alt="name"
-        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+        class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
       />
       <div
         v-else
-        class="w-full h-full flex items-center justify-center bg-linear-to-br from-indigo-500 to-purple-600"
+        class="flex h-full w-full items-center justify-center bg-linear-to-br from-indigo-500 to-purple-600"
       >
-        <span class="text-white text-2xl font-bold px-4 text-center">{{
+        <span class="px-4 text-center text-2xl font-bold text-white">{{
           name
         }}</span>
       </div>
-    </div>
+    </RouterLink>
 
-    <div class="p-5 grow flex flex-col gap-6">
-      <h3
-        class="text-lg font-semibold text-gray-800 hover:text-indigo-600 transition-colors cursor-pointer line-clamp-2"
-        @click="navigateToProduct(id)"
-      >
-        {{ name }}
-      </h3>
+    <div class="flex grow flex-col gap-6 p-5">
+      <RouterLink :to="{ name: 'product', params: { productId: id } }">
+        <h3
+          class="line-clamp-2 cursor-pointer text-lg font-semibold text-gray-800 transition-colors hover:text-indigo-600"
+        >
+          {{ name }}
+        </h3>
+      </RouterLink>
 
-      <div class="space-y-4 mt-auto">
+      <div class="mt-auto space-y-4">
         <p class="text-2xl font-bold text-green-600">
           {{ defaultDisplayedPriceFormatted }}
         </p>
+
         <button
-          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 active:scale-95 transform"
+          class="flex w-full transform cursor-pointer items-center justify-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white transition-colors duration-200 hover:bg-indigo-700 active:scale-95"
           @click="addToCart"
         >
-          Buy
+          Add to Cart
         </button>
       </div>
     </div>

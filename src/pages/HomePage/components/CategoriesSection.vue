@@ -1,37 +1,21 @@
 <script setup lang="ts">
-import { useAsyncState } from '@vueuse/core'
 import StoreSection from '../../../components/StoreSection.vue'
 import CategoryCard from './CategoryCard.vue'
-import { $api } from '../../../api'
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useCategoriesStore } from '../../../stores/categories'
 
-const { state } = useAsyncState(
-  $api.categories.getCategories().then((v) => {
-    console.log('categories', v)
-    return v.items
-  }),
-  [],
-)
-
-const route = useRoute()
-
-const filteredCategories = computed(() =>
-  route.query.category
-    ? state.value.filter(
-        (category) => category.parentId === Number(route.query.category),
-      )
-    : state.value.filter((category) => !category.parentId),
-)
+const store = useCategoriesStore()
 </script>
 
 <template>
-  <StoreSection v-if="filteredCategories.length" heading="Categories">
+  <StoreSection heading="Categories">
+    <div v-if="store.isLoading">Loading...</div>
+
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      v-if="store.categories"
+      class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
     >
       <CategoryCard
-        v-for="category in filteredCategories"
+        v-for="category in store.categories"
         :key="category.id"
         v-bind="category"
       />

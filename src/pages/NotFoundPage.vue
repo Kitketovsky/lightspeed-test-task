@@ -14,19 +14,19 @@ const goBack = () => {
 
 <template>
   <div
-    class="min-h-screen bg-linear-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center px-4"
+    class="flex min-h-screen items-center justify-center bg-linear-to-br from-indigo-50 via-white to-purple-50 px-4"
   >
-    <div class="text-center max-w-2xl mx-auto">
+    <div class="mx-auto max-w-2xl text-center">
       <!-- Animated 404 -->
-      <div class="mb-8 relative">
+      <div class="relative mb-8">
         <h1
-          class="text-9xl font-black text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-purple-600 animate-pulse"
+          class="animate-pulse bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-9xl font-black text-transparent"
         >
           404
         </h1>
         <div class="absolute inset-0 flex items-center justify-center">
           <div
-            class="w-32 h-32 bg-indigo-100 rounded-full animate-ping opacity-20"
+            class="h-32 w-32 animate-ping rounded-full bg-indigo-100 opacity-20"
           ></div>
         </div>
       </div>
@@ -34,7 +34,7 @@ const goBack = () => {
       <!-- Icon -->
       <div class="mb-8">
         <svg
-          class="w-32 h-32 mx-auto text-indigo-600 opacity-50"
+          class="mx-auto h-32 w-32 text-indigo-600 opacity-50"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -50,20 +50,20 @@ const goBack = () => {
 
       <!-- Message -->
       <div class="mb-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+        <h2 class="mb-4 text-3xl font-bold text-gray-800 md:text-4xl">
           Oops! Page Not Found
         </h2>
-        <p class="text-lg text-gray-600 mb-2">
+        <p class="mb-2 text-lg text-gray-600">
           The page you're looking for doesn't exist or has been moved.
         </p>
         <p class="text-gray-500">Don't worry, let's get you back on track!</p>
       </div>
 
       <!-- Action Buttons -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
         <button
           @click="goHome"
-          class="group relative px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 w-full sm:w-auto"
+          class="group relative w-full transform rounded-lg bg-indigo-600 px-8 py-4 font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-indigo-700 hover:shadow-xl sm:w-auto"
         >
           <span class="flex items-center justify-center gap-2">
             <svg
@@ -82,7 +82,7 @@ const goBack = () => {
 
         <button
           @click="goBack"
-          class="px-8 py-4 bg-white hover:bg-gray-50 text-gray-700 font-semibold rounded-lg transition-all duration-200 shadow-md hover:shadow-lg border-2 border-gray-200 w-full sm:w-auto"
+          class="w-full rounded-lg border-2 border-gray-200 bg-white px-8 py-4 font-semibold text-gray-700 shadow-md transition-all duration-200 hover:bg-gray-50 hover:shadow-lg sm:w-auto"
         >
           <span class="flex items-center justify-center gap-2">
             <svg
@@ -109,15 +109,15 @@ const goBack = () => {
     </div>
 
     <!-- Floating Shapes Background -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="pointer-events-none absolute inset-0 overflow-hidden">
       <div
-        class="absolute top-20 left-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"
+        class="animate-blob absolute top-20 left-10 h-72 w-72 rounded-full bg-purple-200 opacity-20 mix-blend-multiply blur-xl filter"
       ></div>
       <div
-        class="absolute top-40 right-10 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"
+        class="animate-blob animation-delay-2000 absolute top-40 right-10 h-72 w-72 rounded-full bg-indigo-200 opacity-20 mix-blend-multiply blur-xl filter"
       ></div>
       <div
-        class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"
+        class="animate-blob animation-delay-4000 absolute -bottom-8 left-20 h-72 w-72 rounded-full bg-pink-200 opacity-20 mix-blend-multiply blur-xl filter"
       ></div>
     </div>
   </div>
