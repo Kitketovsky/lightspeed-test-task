@@ -1,88 +1,60 @@
-# Senior Front-end Software Engineer test task for Lightspeed
+# Senior Frontend Engineer (Vue.js) Test Task E-Commerce Application for Lightspeed
 
-## Vacancy
+## Overview
 
-[Senior Front-end Software Engineer (Vue.js)](https://www.lightspeedhq.com/careers/job/senior-frontend-software-engineer-vuejs/5914265/?office=Tbilisi,%20Tbilisi,%20Georgia)
+This application provides a complete e-commerce experience with category browsing, product discovery, and shopping cart functionality. It integrates with the Ecwid REST API to fetch real store data and implements best practices for Vue.js application development.
 
-## Requirements
+## Sliced File Architecture
 
-Write an application that contains three pages:
+This project follows the **Sliced File Architecture** pattern, where all files related to a specific feature are stored together in a single directory. This approach makes the code more understandable and maintainable.
 
-- A page with a list of categories and products
-- product page
-- shopping cart page
+```
+src/
+├── catalog/                  # Catalog page (home)
+│   ├── categories/            # Categories feature
+│   └── products/              # Products feature
+├── cart/                     # Shopping cart page
+│   └── components/            # Cart-specific components
+├── product/                  # Product detail page
+│   └── components/            # Product page components
+├── not-found-page/           # 404 page
+│   └── components/            # Error page components
+└── lib/                      # Shared utilities
+    ├── api/                   # API client
+    ├── components/            # Shared UI components
+    ├── router/                # Router configuration
+    ├── stores/                # Pinia stores
+    └── types/                 # TypeScript types
+```
 
-### Data
+## Installation
 
-Store data must be accessed using [Ecwid REST API](https://api-docs.ecwid.com/reference/rest-api)
+```bash
+# Install dependencies
+pnpm install
 
-The easiest way is to use a demo store. It's access info is like this:
+# Start development server
+pnpm dev
 
-- StoreID: 108362264
-- Token: public_RiNvjTVVzKLhFNWyzR5fNY68u1GMHLEs
+# Build for production
+pnpm build
 
-### Page «products and categories list»
+# Preview production build
+pnpm preview
 
-The page contains a list of products and categories in any convenient format: grid, list table.
+# Run linter
+pnpm lint
 
-Category page content:
+# Format code
+pnpm format
+```
 
-- category name
-- category image
+## Task Requirements
 
-Product page content:
+For detailed project requirements, see [docs/requirements.md](./docs/requirements.md).
 
-- product name
-- product price
-- product image
-- buy button
+## Acknowledgments
 
-#### Opening category details
-
-When you click on a category, the app takes you to a page with subcategories and products belonging to that category.
-
-#### Opening product details
-
-When you click on a product, the app goes to the Product Details page.
-
-### «Product details» page
-
-The page contains details about the product:
-
-- product name
-- product description
-- product image
-- product price
-- buy button
-
-### «Buy» button
-
-The button adds an item to the "cart"
-Shopping cart - any local storage with a list of added items.
-
-### «Cart» icon
-
-All pages display a cart icon with the number of items added to it. When you click on the icon, the application goes to the "Shopping cart" page
-
-### «Cart» page
-
-The page contains a list of added items and the "Place order" button.
-Any item in the list can be deleted by clicking on the "Delete" button.
-
-### Page navigation
-
-The page state is displayed in the url. When you navigate to a url, the page that belongs to that url is displayed.
-
-### «Place order» button
-
-When you click on the button, a text congratulating you on your purchase is shown.
-
-## Technologies
-
-- Typescript
-- VueJS
-- HTML/CSS
-
-## Design
-
-Pages should look nice and readable. You can use any CSS framework.
+- Architecture inspired by [Rhetus LIMS](https://github.com/Quantori-Academy/rhetus-lims)
+- API provided by [Ecwid](https://www.ecwid.com/)
+- Built for [Lightspeed](https://www.lightspeedhq.com/) technical assessment
