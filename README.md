@@ -1,4 +1,4 @@
-# Senior Frontend Engineer (Vue.js) Test Task E-Commerce Application for Lightspeed
+# Senior Frontend Engineer (Vue.js) E-Commerce Test Task Application for Lightspeed
 
 ## Overview
 
