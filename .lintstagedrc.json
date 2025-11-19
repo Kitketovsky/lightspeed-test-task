@@ -1,4 +1,4 @@
 {
 	"**/*": "prettier --write",
-	"/src/**/*.{ts,mts,tsx,vue}": "eslint --fix --cache"
+	"src/**/*.{ts,mts,tsx,vue}": "eslint --fix"
 }
