@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 
-import StoreCart from './components/StoreCart.vue'
+import StoreCart from './StoreCart.vue'
 </script>
 
 <template>
