@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+
 import UIButton from '../../../lib/components/ui/UIButton.vue'
 </script>
 
@@ -15,9 +16,6 @@ import UIButton from '../../../lib/components/ui/UIButton.vue'
 		</div>
 
 		<div class="flex items-center justify-center gap-4">
-			<RouterLink :to="{ name: 'cart' }">
-				<UIButton class="max-w-sm">Back to Cart</UIButton>
-			</RouterLink>
 			<RouterLink :to="{ name: 'home' }">
 				<UIButton class="max-w-sm">Home</UIButton>
 			</RouterLink>

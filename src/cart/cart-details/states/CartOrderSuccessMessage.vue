@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+
 import UIButton from '../../../lib/components/ui/UIButton.vue'
 </script>
 

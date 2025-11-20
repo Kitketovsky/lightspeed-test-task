@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import CartDetails from './cart-details/CartDetails.vue'
+import CartOrderDetails from './cart-details/CartOrderDetails.vue'
 </script>
 
 <template>
-	<CartDetails />
+	<CartOrderDetails />
 </template>
